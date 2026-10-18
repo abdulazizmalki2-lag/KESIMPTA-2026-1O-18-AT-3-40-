@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>الدليل الشامل ومُتتبّع كيسيمبتا (Kesimpta Guide & Tracker)</title>
+
+  <!-- الخطوط والتنسيق -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --teal-deep: #0f4c5c;
+      --teal-bright: #008080;
+      --teal-light: #e6f2f2;
+      --amber: #e36414;
+      --amber-pale: #fff3e6;
+      --green: #10b981;
+      --green-light: #d1fae5;
+      --red: #ef4444;
+      --ink: #1f2937;
+      --ink-soft: #4b5563;
+      --bg: #f8fafc;
+      --paper: #ffffff;
+      --line: #e2e8f0;
+      --shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.06);
+      --radius-sm: 8px;
+      --radius-md: 12px;
+      --radius-lg: 20px;
+      --font-body: 'Tajawal', system-ui, -apple-system, sans-serif;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background-color: var(--bg); color: var(--ink); font-family: var(--font-body); line-height: 1.8; direction: rtl; }
+
+    header {
+      background: linear-gradient(135deg, var(--teal-deep), var(--teal-bright));
+      color: white; padding: 55px 20px; text-align: center; position: relative;
+    }
+    header h1 { font-size: 2.4rem; font-weight: 800; margin-bottom: 10px; }
+    header p { font-size: 1.15rem; opacity: 0.92; max-width: 700px; margin: 0 auto; }
+
+    .pdpl-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(255, 255, 255, 0.15); border: 1px solid rgba(255, 255, 255, 0.3);
+      padding: 6px 16px; border-radius: 999px; font-size: 0.88rem; margin-top: 18px;
+    }
+
+    nav {
+      background: var(--paper); border-bottom: 1px solid var(--line);
+      position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+    }
+    nav ul { display: flex; justify-content: center; list-style: none; gap: 15px; padding: 12px; flex-wrap: wrap; }
+    nav a { text-decoration: none; color: var(--ink-soft); font-weight: 700; font-size: 0.95rem; transition: color 0.2s; }
+    nav a:hover { color: var(--teal-bright); }
+
+    .wrap { max-width: 1000px; margin: 0 auto; padding: 40px 20px; }
+
+    section {
+      margin-bottom: 35px; background: var(--paper); padding: 30px;
+      border-radius: var(--radius-lg); border: 1px solid var(--line); box-shadow: var(--shadow);
+    }
+    section.alt { background: transparent; border: none; box-shadow: none; padding: 0; }
+
+    .kicker { color: var(--teal-bright); font-weight: 700; margin-bottom: 6px; font-size: 0.9rem; }
+    .sec-title { font-size: 1.75rem; color: var(--teal-deep); margin-bottom: 12px; }
+    .sec-sub { color: var(--ink-soft); margin-bottom: 22px; font-size: 0.98rem; }
+
+    .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
+    .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; }
+    
+    .card { background: var(--paper); border: 1px solid var(--line); border-radius: var(--radius-md); padding: 22px; }
+    .card h3 { color: var(--teal-deep); margin-bottom: 10px; font-size: 1.2rem; }
+
+    /* Tool Boxes UI */
+    .tool-box {
+      background: var(--paper); border: 2px solid var(--teal-bright);
+      border-radius: var(--radius-lg); padding: 30px; box-shadow: var(--shadow); margin-bottom: 25px;
+    }
+    
+    .pin-display {
+      background: var(--teal-light); color: var(--teal-deep); font-weight: 800;
+      font-size: 1.25rem; padding: 8px 18px; border-radius: var(--radius-sm); letter-spacing: 2px; display: inline-block;
+    }
+
+    .btn {
+      background: var(--teal-deep); color: #fff; border: none; padding: 11px 24px;
+      border-radius: 999px; font-weight: 700; cursor: pointer; font-family: var(--font-body);
+      transition: all 0.2s; display: inline-flex; align-items: center; gap: 8px; font-size: 0.95rem;
+    }
+    .btn:hover { background: var(--teal-bright); }
+    .btn-amber { background: var(--amber); }
+    .btn-amber:hover { opacity: 0.9; }
+    .btn-green { background: var(--green); }
+    .btn-green:hover { opacity: 0.9; }
+    .btn-outline-red { background: transparent; border: 1px solid var(--red); color: var(--red); }
+    .btn-outline-red:hover { background: var(--red); color: #fff; }
+
+    .dose-item {
+      padding: 16px 20px; border-radius: var(--radius-md); background: var(--paper);
+      border: 1px solid var(--line); display: flex; justify-content: space-between;
+      align-items: center; flex-wrap: wrap; gap: 12px; margin-bottom: 12px;
+    }
+    .dose-item.rest { background: var(--amber-pale); border-color: #fcd34d; }
+    .dose-status-btn {
+      background: var(--teal-deep); color: #fff; border: none; padding: 8px 18px;
+      border-radius: 999px; font-weight: 700; cursor: pointer; font-family: var(--font-body);
+    }
+    .dose-status-btn.done { background: var(--green); cursor: default; }
+
+    .alert-banner {
+      padding: 15px 20px; border-radius: var(--radius-md); background: var(--teal-light);
+      border-right: 4px solid var(--teal-bright); color: var(--teal-deep); font-weight: 700; margin-bottom: 20px;
+    }
+
+    footer { text-align: center; padding: 35px; color: var(--ink-soft); font-size: 0.9rem; border-top: 1px solid var(--line); background: var(--paper); }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <h1>الدليل الشامل لدواء كيسيمبتا (Kesimpta)</h1>
+    <p>دليلك الطبي المتكامل مع أداة الجدولة والتنبيهات المباشرة لضمان الاستخدام الآمن والفعال</p>
+    <div class="pdpl-badge">
+      🔒 متوافق مع نظام حماية البيانات الشخصية (PDPL) - لا نطلب أو نخزن هويتك
+    </div>
+  </header>
+
+  <!-- Navigation Bar -->
+  <nav>
+    <ul>
+      <li><a href="#overview">عن الدواء</a></li>
+      <li><a href="#timeline">الجدول الزمني</a></li>
+      <li><a href="#tool-tracker">أداة المتابعة والتصدير</a></li>
+      <li><a href="#tool-notifications">أداة التنبيهات</a></li>
+      <li><a href="#sites">أماكن الحقن</a></li>
+      <li><a href="#steps">طريقة الاستخدام</a></li>
+      <li><a href="#safety">التخزين والتنبيهات الطبية</a></li>
+    </ul>
+  </nav>
+
+  <main class="wrap">
+
+    <!-- Section 1: Overview -->
+    <section id="overview">
+      <div class="kicker">معلومات أساسية وحيوية</div>
+      <h2 class="sec-title">ما هو دواء كيسيمبتا (Kesimpta)؟</h2>
+      <p>كيسيمبتا (Ofatumumab) بتركيز 20 ملغم هو علاج مناعي متخصص موجه لعلاج أشكال التصلب اللويحي المتعدد المتكرر (RMS) لدى الكبار. يعمل العلاج عن طريق استهداف خلايا B المناعية لتقليل هجمات التصلب وأعراضه.</p>
+
+      <div class="grid-3" style="margin-top: 22px;">
+        <div class="card">
+          <h3>طريقة الإعطاء</h3>
+          <p>حقن ذاتية تحت الجلد (Subcutaneous) باستخدام قلم Sensoready الجاهز للاستخدام.</p>
+        </div>
+        <div class="card">
+          <h3>الجرعة المحددة</h3>
+          <p>حقنة واحدة بتركيز 20 ملغم في كل جرعة محددة وفق الجدول الزمني.</p>
+        </div>
+        <div class="card">
+          <h3>نمط الجرعات</h3>
+          <p>جرعات أسبوعية متتالية في البداية، يليها جدول شهر منتظم ومستمر.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 2: Dosing Timeline -->
+    <section id="timeline">
+      <div class="kicker">خطة العلاج</div>
+      <h2 class="sec-title">الجدول الزمني للجرعات</h2>
+      <p class="sec-sub">يتكون بروتوكول العلاج بدواء كيسيمبتا من مرحلتين أساسيتين:</p>
+
+      <div class="grid-2">
+        <div class="card" style="border-top: 4px solid var(--teal-bright);">
+          <h3>1. مرحلة البدء (Loading Phase)</h3>
+          <ul style="padding-right: 20px; display: flex; flex-direction: column; gap: 8px;">
+            <li><strong>الأسبوع 0 (اليوم 1):</strong> الجرعة الأولى (20 ملغم).</li>
+            <li><strong>الأسبوع 1 (اليوم 7):</strong> الجرعة الثانية (20 ملغم).</li>
+            <li><strong>الأسبوع 2 (اليوم 14):</strong> الجرعة الثالثة (20 ملغم).</li>
+            <li><strong>الأسبوع 3 (اليوم 21):</strong> <span style="color: var(--amber); font-weight: 700;">أسبوع راحة (بدون حقن).</span></li>
+          </ul>
+        </div>
+
+        <div class="card" style="border-top: 4px solid var(--green);">
+          <h3>2. مرحلة الاستمرار (Maintenance Phase)</h3>
+          <ul style="padding-right: 20px; display: flex; flex-direction: column; gap: 8px;">
+            <li><strong>الأسبوع 4 (اليوم 28):</strong> الجرعة الشهرية الأولى.</li>
+            <li><strong>شهرياً بعد ذلك:</strong> حقنة واحدة كل شهر في نفس التاريخ المخصص.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 3: TOOL 1 - Tracker & ICS Export -->
+    <section id="tool-tracker" class="alt">
+      <div class="kicker">الأداة التفاعلية الأولى</div>
+      <h2 class="sec-title">مُتتبّع الجرعات الآمن مع خيار تصدير التقويم</h2>
+      <p class="sec-sub">سجّل تاريخ أول جرعة لتشغيل الخزنة وحفظ سجل جرعاتك بخصوصية تامة بدون حساب أو بيانات شخصية.</p>
+
+      <div class="tool-box">
+        <!-- إعداد الخزنة والجدول لأول مرة -->
+        <div id="setupView">
+          <h3 style="color: var(--teal-deep); margin-bottom: 15px;">إنشاء الخزنة وبدء المتابعة</h3>
+          <div style="display: grid; gap: 16px; max-width: 520px;">
+            <div>
+              <label style="font-weight: 700; display: block; margin-bottom: 6px;">تاريخ تلقي الجرعة الأولى (الأسبوع 0):</label>
+              <input type="date" id="startDateInput" style="width: 100%; padding: 11px; border-radius: var(--radius-sm); border: 1px solid var(--line); font-family: var(--font-body); font-size: 1rem;">
+            </div>
+            <div>
+              <label style="font-weight: 700; display: block; margin-bottom: 6px;">رمز مرور مخصص لحماية خزنتك (4 أرقام):</label>
+              <input type="password" id="pinInput" maxlength="4" placeholder="مثال: 8821" style="width: 100%; padding: 11px; border-radius: var(--radius-sm); border: 1px solid var(--line); font-family: var(--font-body); letter-spacing: 3px; font-size: 1rem;">
+            </div>
+            <button onclick="createVault()" class="btn btn-green">حساب الجدول وتنشيط الخزنة</button>
+          </div>
+        </div>
+
+        <!-- عرض الخزنة والجدول التفاعلي -->
+        <div id="vaultView" style="display: none;">
+          <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 15px; margin-bottom: 25px; padding-bottom: 15px; border-bottom: 1px solid var(--line);">
+            <div>
+              <span style="font-size: 0.9rem; color: var(--ink-soft);">رمز الخزنة النشط:</span>
+              <div class="pin-display" id="userPinCode">KSM-****</div>
+            </div>
+            <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+              <button onclick="exportToCalendar()" class="btn btn-amber">📅 تصدير إلى تقويم الجوال (.ics)</button>
+              <button onclick="lockVault()" class="btn" style="background: var(--ink-soft);">قفل الخزنة</button>
+            </div>
+          </div>
+
+          <h3 style="color: var(--teal-deep); margin-bottom: 15px;">جدول الجرعات الشخصي وتوثيق الحالة:</h3>
+          <div id="dosesContainer"></div>
+
+          <div style="margin-top: 30px; padding-top: 15px; border-top: 1px dashed var(--line); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
+            <span style="font-size: 0.85rem; color: var(--ink-soft);">حق المحو الكامل (PDPL): يمكنك مسح جميع سجلاتك بلمسة واحدة.</span>
+            <button onclick="wipeData()" class="btn btn-outline-red">مسح البيانات نهائياً</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 4: TOOL 2 - Direct Browser Notifications -->
+    <section id="tool-notifications">
+      <div class="kicker">الأداة التفاعلية الثانية</div>
+      <h2 class="sec-title">أداة التنبيهات والإشعارات المباشرة</h2>
+      <p class="sec-sub">فعّل الإشعارات لتصلك تنبيهات تذكيرية مباشرة على جهازك في يوم الجرعة المحددة وقبلها بيوم.</p>
+
+      <div class="tool-box" style="border-color: var(--amber);">
+        <div id="notificationBanner" class="alert-banner">
+          🔔 حالة التنبيهات حالياً: <span id="notifStatusText">غير مفعلة</span>
+        </div>
+
+        <p style="margin-bottom: 18px; color: var(--ink-soft);">تتيح لك هذه الأداة استقبال إشعار ينبّهك بموعد الحقنة حتى لو كان المتصفح يعمل في الخلفية.</p>
+
+        <div style="display: flex; gap: 12px; flex-wrap: wrap;">
+          <button id="enableNotifBtn" onclick="requestNotificationPermission()" class="btn">تفعيل إشعارات المتصفح</button>
+          <button id="testNotifBtn" onclick="sendTestNotification()" class="btn btn-amber" style="display: none;">تجربة إشعار تنبيه تجريبي 🔔</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 5: Injection Sites -->
+    <section id="sites">
+      <div class="kicker">توجيهات الاستخدام</div>
+      <h2 class="sec-title">أماكن الحقن المصرح بها</h2>
+      <p class="sec-sub">احرص على تغيير موضع الحقن في كل مرة لتقليل تهيج الجلد:</p>
+
+      <div class="grid-3">
+        <div class="card">
+          <h3>1. الفخذ</h3>
+          <p>المنطقة الأمامية من الفخذ الأيمن أو الأيسر.</p>
+        </div>
+        <div class="card">
+          <h3>2. أسفل البطن</h3>
+          <p>حول منطقة البطن مع مراعاة الابتعاد مسافة 5 سم على الأقل عن السرة.</p>
+        </div>
+        <div class="card">
+          <h3>3. أعلى الذراع</h3>
+          <p>الجزء الخارجي من أعلى الذراع (يتطلب مساعدة من شخص آخر).</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 6: Steps of Usage -->
+    <section id="steps">
+      <div class="kicker">خطوة بخطوة</div>
+      <h2 class="sec-title">طريقة الحقن باستخدام قلم Sensoready</h2>
+      <ol style="padding-right: 22px; display: flex; flex-direction: column; gap: 12px;">
+        <li><strong>الإخراج من الثلاجة:</strong> أخرج القلم من الثلاجة قبل الحقن بـ 15 إلى 30 دقيقة ليصل لدرجة حرارة الغرفة.</li>
+        <li><strong>التنظيف والتجهيز:</strong> نظف موضع الحقن بمسحة كحولية واتركه يجف تماماً. لا تلمس المنطقة بعد تنظيفها.</li>
+        <li><strong>بدء الحقن:</strong> انزع الغطاء الأخضر، واضغط بالقلم بشكل عمودي بزاوبة (90 درجة) مباشرة على الجلد.</li>
+        <li><strong>النقرة الأولى:</strong> استمر بالضغط الثابت حتى تسمع صوت "النقرة الأولى" لتبدأ عملية الحقن تلقائياً.</li>
+        <li><strong>النقرة الثانية والاكتمال:</strong> استمر بالضغط حتى تسمع "النقرة الثانية" ويتعبأ المؤشر الأخضر داخل النافذة بالكامل (تستغرق 10 ثوانٍ تقريباً).</li>
+      </ol>
+    </section>
+
+    <!-- Section 7: Safety, Storage & Medical Pre-checks -->
+    <section id="safety">
+      <div class="kicker">السلامة والتخزين</div>
+      <h2 class="sec-title">التخزين والجرعات الفائتة والفحوصات</h2>
+
+      <div class="grid-2">
+        <div class="card">
+          <h3>طريقة التخزين الصحيحة</h3>
+          <p>يحفظ في الثلاجة بين 2 إلى 8 درجات مئوية بعيداً عن الضوء وفي علبته الأصلية. <strong>ممنوع التجميد أو الرّج.</strong></p>
+        </div>
+
+        <div class="card">
+          <h3>في حال نسيان الجرعة</h3>
+          <p>احقن الجرعة الفائتة بأسرع وقت ممكن دون الانتظار، ثم أكمل الجدول حسب المواعيد المعتادة دون مضاعفة الجرعة.</p>
+        </div>
+      </div>
+
+      <div style="margin-top: 20px;" class="card">
+        <h3>الفحوصات الواجب إجراؤها قبل العلاج</h3>
+        <ul style="padding-right: 20px; display: flex; flex-direction: column; gap: 6px; color: var(--ink-soft);">
+          <li>فحص التهاب الكبد B (Hepatitis B Screen).</li>
+          <li>فحص مستويات الأجسام المضادة والمناعة (Immunoglobulins).</li>
+          <li>إكمال جميع اللقاحات اللازمة قبل بدء العلاج بأسبوعين على الأقل.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Section 8: PDPL Privacy Compliance -->
+    <section id="privacy">
+      <div class="kicker">الامتثال والخصوصية</div>
+      <h2 class="sec-title">الالتزام بنظام حماية البيانات الشخصية (PDPL)</h2>
+      <p>تطبيقاً لأنظمة الهيئة السعودية للبيانات والذكاء الاصطناعي (SDAIA):</p>
+      <ul style="padding-right: 20px; margin-top: 8px; display: flex; flex-direction: column; gap: 6px; color: var(--ink-soft);">
+        <li>هذا الموقع صُمم بأسلوب (Zero-PII) حيث لا يطلب أو ينقل أي بيانات هوية.</li>
+        <li>بيانات الجداول والرموز محفوظة محلياً في ذاكرة جهازك فقط.</li>
+        <li>يمكنك استخدام حق المحو وتنظيف سجلاتك فوراً في أي وقت بضغطة زر.</li>
+      </ul>
+    </section>
+
+  </main>
+
+  <footer>
+    <p>هذا الموقع لأغراض التوعية المدرسية والتعليمية الذاتية ولا يغني عن الاستشارة الطبية المباشرة مع الطبيب المختص.</p>
+  </footer>
+
+  <!-- Javascript Logic for Tools 1 & 2 -->
+  <script>
+    const STORAGE_KEY = 'kesimpta_full_vault';
+
+    // تحميل البيانات وإعداد الواجهة
+    window.addEventListener('DOMContentLoaded', () => {
+      checkNotificationStatus();
+      const savedData = localStorage.getItem(STORAGE_KEY);
+      if (savedData) {
+        document.getElementById('setupView').style.display = 'none';
+        document.getElementById('vaultView').style.display = 'block';
+        renderSchedule();
+        checkDoseReminderAlert();
+      }
+    });
+
+    // --- TOOL 1: Vault, Dosing, ICS Export ---
+
+    function createVault() {
+      const startDate = document.getElementById('startDateInput').value;
+      const pin = document.getElementById('pinInput').value;
+
+      if (!startDate || pin.length !== 4) {
+        alert('يرجى اختيار تاريخ الجرعة الأولى وإدخال رمز مكون من 4 أرقام.');
+        return;
+      }
+
+      const vaultData = {
+        pin: btoa(pin),
+        startDate: startDate,
+        history: {}
+      };
+
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(vaultData));
+      document.getElementById('setupView').style.display = 'none';
+      document.getElementById('vaultView').style.display = 'block';
+      renderSchedule();
+      checkDoseReminderAlert();
+    }
+
+    function renderSchedule() {
+      const data = JSON.parse(localStorage.getItem(STORAGE_KEY));
+      if (!data) return;
+
+      document.getElementById('userPinCode').innerText = 'KSM-' + atob(data.pin);
+
+      const start = new Date(data.startDate);
+      const schedule = [
+        { id: 'd1', title: 'الجرعة الأولى (الأسبوع 0)', days: 0 },
+        { id: 'd2', title: 'الجرعة الثانية (الأسبوع 1)', days: 7 },
+        { id: 'd3', title: 'الجرعة الثالثة (الأسبوع 2)', days: 14 },
+        { id: 'rest', title: 'أسبوع راحة (الأسبوع 3 - لا توجد حقنة)', days: 21, isRest: true },
+        { id: 'm1', title: 'الجرعة الشهرية الأولى (الأسبوع 4)', days: 28 },
+        { id: 'm2', title: 'الجرعة الشهرية الثانية (الأسبوع 8)', days: 56 },
+        { id: 'm3', title: 'الجرعة الشهرية الثالثة (الأسبوع 12)', days: 84 }
+      ];
+
+      const container = document.getElementById('dosesContainer');
+      container.innerHTML = '';
+
+      schedule.forEach((item) => {
+        const doseDate = new Date(start);
+        doseDate.setDate(doseDate.getDate() + item.days);
+
+        const formattedDate = doseDate.toLocaleDateString('ar-SA', {
+          weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'
+        });
+
+        const isTaken = data.history[item.id] || false;
+
+        const div = document.createElement('div');
+        div.className = `dose-item ${item.isRest ? 'rest' : ''}`;
+        div.innerHTML = `
+          <div>
+            <strong style="color: ${item.isRest ? 'var(--amber)' : 'var(--teal-deep)'}">${item.title}</strong>
+            <div style="font-size: 0.88rem; color: var(--ink-soft); margin-top: 4px;">📅 ${formattedDate}</div>
+          </div>
+          ${!item.isRest ? `
+            <button class="dose-status-btn ${isTaken ? 'done' : ''}" onclick="toggleDoseState('${item.id}')">
+              ${isTaken ? 'تم أخذ الحقنة ✔' : 'تأكيد الجرعة'}
+            </button>
+          ` : '<span style="color: var(--amber); font-weight:700;">فترة راحة</span>'}
+        `;
+        container.appendChild(div);
+      });
+    }
+
+    function toggleDoseState(doseId) {
+      const data = JSON.parse(localStorage.getItem(STORAGE_KEY));
+      if (!data) return;
+
+      data.history[doseId] = !data.history[doseId];
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+      renderSchedule();
+    }
+
+    function exportToCalendar() {
+      const data = JSON.parse(localStorage.getItem(STORAGE_KEY));
+      if (!data) return;
+
+      const start = new Date(data.startDate);
+      let icsContent = "BEGIN:VCALENDAR\nVERSION:2.0\nPRODID:-//Kesimpta Guide SA//AR\n";
+
+      const schedule = [
+        { title: 'موعد حقنة كيسيمبتا - الجرعة 1', days: 0 },
+        { title: 'موعد حقنة كيسيمبتا - الجرعة 2', days: 7 },
+        { title: 'موعد حقنة كيسيمبتا - الجرعة 3', days: 14 },
+        { title: 'موعد حقنة كيسيمبتا - الجرعة الشهرية 1', days: 28 },
+        { title: 'موعد حقنة كيسيمبتا - الجرعة الشهرية 2', days: 56 },
+        { title: 'موعد حقنة كيسيمبتا - الجرعة الشهرية 3', days: 84 }
+      ];
+
+      schedule.forEach(item => {
+        const d = new Date(start);
+        d.setDate(d.getDate() + item.days);
+        const dateStr = d.toISOString().replace(/-|:|\.\d\d\d/g, "").substring(0, 8);
+
+        icsContent += "BEGIN:VEVENT\n";
+        icsContent += `SUMMARY:${item.title}\n`;
+        icsContent += `DTSTART;VALUE=DATE:${dateStr}\n`;
+        icsContent += "DESCRIPTION:تذكير بأخذ حقنة كيسيمبتا (20mg) تحت الجلد.\n";
+        icsContent += "END:VEVENT\n";
+      });
+
+      icsContent += "END:VCALENDAR";
+
+      const blob = new Blob([icsContent], { type: 'text/calendar;charset=utf-8' });
+      const link = document.createElement('a');
+      link.href = window.URL.createObjectURL(blob);
+      link.setAttribute('download', 'جدول_جرعات_كيسيمبتا.ics');
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    }
+
+    function lockVault() {
+      document.getElementById('vaultView').style.display = 'none';
+      document.getElementById('setupView').style.display = 'block';
+    }
+
+    function wipeData() {
+      if (confirm('هل أنت متأكد من مسح كافة بيانات الخزنة والجدول نهائياً؟')) {
+        localStorage.removeItem(STORAGE_KEY);
+        location.reload();
+      }
+    }
+
+    // --- TOOL 2: Browser Notification System ---
+
+    function checkNotificationStatus() {
+      const statusText = document.getElementById('notifStatusText');
+      const testBtn = document.getElementById('testNotifBtn');
+      const enableBtn = document.getElementById('enableNotifBtn');
+
+      if (!('Notification' in window)) {
+        statusText.innerText = 'غير مدعومة في هذا المتصفح';
+        return;
+      }
+
+      if (Notification.permission === 'granted') {
+        statusText.innerText = 'مفعّلة وجاهزة ✔';
+        statusText.style.color = 'var(--green)';
+        testBtn.style.display = 'inline-flex';
+        enableBtn.innerText = 'التنبيهات مفعّلة بالكامل';
+        enableBtn.disabled = true;
+        enableBtn.style.opacity = '0.7';
+      } else if (Notification.permission === 'denied') {
+        statusText.innerText = 'مرفوضة من إعدادات المتصفح';
+        statusText.style.color = 'var(--red)';
+      } else {
+        statusText.innerText = 'بانتظار التفعيل';
+      }
+    }
+
+    function requestNotificationPermission() {
+      if (!('Notification' in window)) {
+        alert('المتصفح لا يدعم الإشعارات المباشرة.');
+        return;
+      }
+
+      Notification.requestPermission().then(permission => {
+        checkNotificationStatus();
+        if (permission === 'granted') {
+          sendTestNotification();
+        }
+      });
+    }
+
+    function sendTestNotification() {
+      if (Notification.permission === 'granted') {
+        new Notification('تنبيه كيسيمبتا التجريبي 💉', {
+          body: 'التنبيهات تعمل بنجاح! سيتم إخطارك بمواعيد جرعاتك في وقتها.',
+          icon: 'https://cdn-icons-png.flaticon.com/512/888/888853.png'
+        });
+      }
+    }
+
+    function checkDoseReminderAlert() {
+      const data = JSON.parse(localStorage.getItem(STORAGE_KEY));
+      if (!data) return;
+
+      const today = new Date();
+      const start = new Date(data.startDate);
+      const scheduleDays = [0, 7, 14, 28, 56, 84];
+
+      scheduleDays.forEach(days => {
+        const d = new Date(start);
+        d.setDate(d.getDate() + days);
+
+        const diffTime = d - today;
+        const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+
+        if (diffDays === 0) {
+          document.getElementById('notificationBanner').innerHTML = '🔔 <strong>تذكير مهم: اليوم هو موعد جرعة كيسيمبتا!</strong> لا تنس أخذ الحقنة وتأكيدها.';
+          if (Notification.permission === 'granted') {
+            new Notification('تذكير موعد الجرعة اليوم 💉', { body: 'اليوم هو موعد حقنة كيسيمبتا المحددة.' });
+          }
+        } else if (diffDays === 1) {
+          document.getElementById('notificationBanner').innerHTML = '⏰ <strong>تذكير: غداً هو موعد جرعة كيسيمبتا القادمة.</strong> احرص على تجهيز القلم.';
+        }
+      });
+    }
+  </script>
+</body>
+</html>
